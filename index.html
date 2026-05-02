@@ -51,9 +51,13 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;padding:1rem}
 <body>
 <div class="container">
   <h1>AI Coding Cost Calculator</h1>
-  <div style="background:linear-gradient(135deg,#ef444422,#ef444411);border:1px solid #ef444466;border-radius:12px;padding:1rem;margin-bottom:1.5rem;text-align:center">
-    <span style="color:#ef4444;font-weight:700;font-size:.9rem">⚠ BREAKING — GitHub Copilot Opus 4.7 multiplier just doubled (7.5× → 15×) effective May 1, 2026.</span><br>
-    <span style="color:var(--muted);font-size:.8rem">Pro+ users went from 200 → <strong style="color:#ef4444">100</strong> Opus requests/mo overnight. No downgrade path.</span>
+  <div style="background:linear-gradient(135deg,#ef444422,#ef444411);border:1px solid #ef444466;border-radius:12px;padding:1rem;margin-bottom:.5rem;text-align:center">
+    <span style="color:#ef4444;font-weight:700;font-size:.9rem">⚠ BREAKING — GitHub Copilot Opus 4.7 multiplier doubled (7.5× → 15×) effective May 1.</span><br>
+    <span style="color:var(--muted);font-size:.8rem">Pro+ users: 200 → <strong style="color:#ef4444">100</strong> Opus requests/mo overnight. No downgrade path.</span>
+  </div>
+  <div style="background:linear-gradient(135deg,#d9770622,#d9770611);border:1px solid #d9770666;border-radius:12px;padding:1rem;margin-bottom:1.5rem;text-align:center">
+    <span style="color:#d97706;font-weight:700;font-size:.9rem">⚡ NEW — Claude Code charged a user for tokens before their first request.</span><br>
+    <span style="color:var(--muted);font-size:.8rem">CLI auto-read a local HERMES.md file during init. Billed without consent. Anthropic refunded. <a href="https://github.com/anthropics/claude-code/issues/53262" style="color:var(--accent2)">GitHub #53262</a></span>
   </div>
   <p class="subtitle">Enter your usage. See your real bill. Compare across tools.</p>
 
@@ -91,7 +95,7 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;padding:1rem}
   </div>
 
   <footer>Client-side only · No data collected · Share the URL to compare<br>
-  Prices updated May 1, 2026 — Opus 4.7 now 15× multiplier (was 7.5×). No data collected.</footer>
+  Prices updated May 2, 2026 — Opus 15× multiplier + Claude Code implicit context billing (GitHub #53262). No data collected.</footer>
 </div>
 
 <script>
@@ -111,7 +115,7 @@ const tools = [
       return {total:Math.round(perDev*t), perDev:Math.round(perDev)};
     }},
   { id:'claude', name:'Claude Code', color:'#d97706',
-    note:'Pro $20/mo. Max 5× $100/mo. Max 20× $200/mo. Heavy use hits limits fast.',
+    note:'Pro $20/mo. Max 5× $100/mo. Max 20× $200/mo. ⚡ NOW: billed for auto-read files before first request (GitHub #53262). Heavy use hits limits fast.',
     calc:(h,m,t)=>{
       const tiers={
         budget:  {base:20, lowMul:1.0, highMul:2.5},
