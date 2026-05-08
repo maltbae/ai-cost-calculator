@@ -59,17 +59,20 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;padding:1rem}
 <div class="container">
   <h1>AI Coding Cost Calculator</h1>
   <div style="background:linear-gradient(135deg,#ef444433,#ef444422);border:2px solid #ef444499;border-radius:12px;padding:1.1rem;margin-bottom:.5rem;text-align:center">
-    <span style="color:#ef4444;font-weight:800;font-size:.95rem">🚨 THEY SHOWED YOU THE BILL — THEN HID IT</span><br>
-    <span style="color:var(--text);font-size:.85rem">GitHub accidentally exposed billing preview, then <strong>pulled it back</strong>. Now you can't see what you'll owe until June 1.</span><br>
-    <span style="color:var(--muted);font-size:.78rem">Source: <a href="https://www.reddit.com/r/githubcopilot/" style="color:var(--accent2)">r/GithubCopilot</a> — exposed to public repo, then removed. Opus 15× multiplier confirmed.</span>
+    <span style="color:#ef4444;font-weight:800;font-size:.95rem">🚨 TRIPLE-METERING: TOKENS + SESSIONS + CREDITS</span><br>
+    <span style="color:var(--text);font-size:.85rem">OpenAI now bills <strong>3 ways</strong>: per token, per 20-min session, AND credits that don't roll over. Anthropic matches: tokens + $0.08/session-hour. <strong>$100-200/dev/mo</strong> officially admitted.</span><br>
+    <span style="color:var(--muted);font-size:.78rem">Source: <a href="https://openai.com/api/pricing/" style="color:var(--accent2)">openai.com/api/pricing</a> — container session billing starts. GPT-5.5 output: 750 credits/M. help.openai.com rate card.</span>
   </div>
   <div style="background:linear-gradient(135deg,#ef444422,#ef444411);border:1px solid #ef444466;border-radius:12px;padding:1rem;margin-bottom:.5rem;text-align:center">
-    <span style="color:#ef4444;font-weight:700;font-size:.9rem">⚠ Opus 4.7 multiplier doubled (7.5× → 15×) — effective May 1</span><br>
-    <span style="color:var(--muted);font-size:.8rem">Pro+ users: 200 → <strong style="color:#ef4444">100</strong> Opus requests/mo overnight. No downgrade path.</span>
+    <span style="color:#ef4444;font-weight:700;font-size:.9rem">⏰ 23 DAYS UNTIL JUNE 1 — Copilot token billing goes live</span><br>
+    <span style="color:var(--muted);font-size:.8rem">6 free models eliminated. Annual plans retired. Credits don't roll over. Multiplier table published: Opus 4.6 <strong style="color:#ef4444">3×→27×</strong>.</span>
   </div>
-  <div style="background:linear-gradient(135deg,#d9770622,#d9770611);border:1px solid #d9770666;border-radius:12px;padding:1rem;margin-bottom:1.5rem;text-align:center">
-    <span style="color:#d97706;font-weight:700;font-size:.9rem">⚡ Claude Code charged a user for tokens before their first request.</span><br>
-    <span style="color:var(--muted);font-size:.8rem">CLI auto-read a local HERMES.md file during init. Billed without consent. Anthropic refunded. <a href="https://github.com/anthropics/claude-code/issues/53262" style="color:var(--accent2)">GitHub #53262</a></span>
+  <div style="background:linear-gradient(135deg,#d9770622,#d9770611);border:1px solid #d9770666;border-radius:12px;padding:1rem;margin-bottom:.5rem;text-align:center">
+    <span style="color:#d97706;font-weight:700;font-size:.9rem">⚡ Opus 4.7 tokenizer silently inflates bills up to 35%</span><br>
+    <span style="color:var(--muted);font-size:.8rem">Same rate card. Same model name. 35% more tokens generated per request. Effective price hike with zero disclosure. Source: <a href="https://finout.io" style="color:var(--accent2)">Finout</a> (May 6).</span>
+  </div>
+  <div style="background:linear-gradient(135deg,#6c5ce722,#6c5ce711);border:1px solid #6c5ce766;border-radius:12px;padding:1rem;margin-bottom:1.5rem;text-align:center">
+    <span style="color:#6c5ce7;font-weight:700;font-size:.9rem">✅ OpenClaw: $97/mo flat. No tokens. No sessions. No credits. No surprises.</span>
   </div>
   <p class="subtitle">Enter your usage. See your real bill. Compare across tools.</p>
 
@@ -107,19 +110,19 @@ footer{text-align:center;color:var(--muted);font-size:.75rem;padding:1rem}
   </div>
 
   <footer>Client-side only · No data collected · Share the URL to compare<br>
-  Prices updated May 2, 2026 — Transparency Rug Pull: billing preview exposed then hidden. Opus 15× + implicit context billing (GitHub #53262). 18 days to May 20 refund deadline.</footer>
+  Prices updated May 8, 2026 — Triple-metering confirmed (OpenAI + Anthropic). GPT-5.5: 750 credits/M output. Session billing live. Opus tokenizer +35%. 23 days to June 1 Copilot token billing. <a href="https://maltbae.github.io/ai-costs-exposed/" style="color:var(--accent2)">Full analysis →</a></footer>
 </div>
 
 <script>
 const $ = s => document.querySelector(s);
 const tools = [
   { id:'copilot', name:'GitHub Copilot', color:'#6e40c9',
-    note:'Opus 4.7 multiplier doubled to 15× on May 1 (was 7.5×). Pro+ now gets only 100 Opus req/mo. Older models removed from picker.',
+    note:'June 1: token billing live. 6 free→paid. Opus 4.6 3×→27×. Credits don't roll over. Official avg: $100-200/dev/mo. Session billing added March 31.',
     calc:(h,m,t)=>{
       const tiers={
-        budget:  {base:10, lowMul:1.0, highMul:1.5},
-        balanced:{base:10, lowMul:1.8, highMul:4.0},
-        frontier:{base:39, lowMul:2.5, highMul:15.0}
+        budget:  {base:10, lowMul:1.0, highMul:2.0},
+        balanced:{base:10, lowMul:2.0, highMul:6.0},
+        frontier:{base:39, lowMul:3.0, highMul:20.0}
       };
       const r=tiers[m];
       const intensity=h/8;
@@ -127,7 +130,7 @@ const tools = [
       return {total:Math.round(perDev*t), perDev:Math.round(perDev)};
     }},
   { id:'claude', name:'Claude Code', color:'#d97706',
-    note:'Pro $20/mo. Max 5× $100/mo. Max 20× $200/mo. ⚡ NOW: billed for auto-read files before first request (GitHub #53262). Heavy use hits limits fast.',
+    note:'Pro $20/mo. Max 5× $100/mo. Max 20× $200/mo. NOW: tokenizer inflation +35% (Finout May 6). Managed Agents: $0.08/session-hour + tokens. Heavy use: $900+/mo.',
     calc:(h,m,t)=>{
       const tiers={
         budget:  {base:20, lowMul:1.0, highMul:2.5},
@@ -153,7 +156,7 @@ const tools = [
       return {total:Math.round(perDev*t), perDev:Math.round(perDev)};
     }},
   { id:'openclaw', name:'OpenClaw', color:'#6c5ce7',
-    note:'Flat rate. No credits, no tokens, no overage. Ever.',
+    note:'Flat rate. No tokens, no sessions, no credits, no overage. 20+ models. No tokenizer games. No multiplier tables. Ever.',
     calc:(h,m,t)=>{
       const base={budget:20,balanced:49,frontier:97}[m];
       return {total:base*t, perDev:base};
